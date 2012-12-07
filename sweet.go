@@ -88,7 +88,7 @@ func json_decode(bytes []byte) (ListTuple, error) {
     var result_simple sugar.Tuple
     err = json.Unmarshal(bytes, &result_simple)
 
-    if err != nil {
+    if err == nil {
       //convert siple to array
       array := []sugar.Tuple{result_simple}
       return array, err
