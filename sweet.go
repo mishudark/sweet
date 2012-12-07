@@ -32,6 +32,7 @@ import(
 )
 
 type List []interface{}
+type ListTuple []sugar.Tuple
 
 //List.push(item)
 func (self *List) push(data interface{}){
@@ -76,7 +77,7 @@ func index_replace(self string, char rune, index int) string {
 
 
 //json decoder helper
-func json_decode(bytes []byte) (interface{}, error) {
+func json_decode(bytes []byte) (ListTuple, error) {
   var result []sugar.Tuple
 
   err := json.Unmarshal(bytes, &result)
@@ -89,7 +90,7 @@ func json_decode(bytes []byte) (interface{}, error) {
 
     if err != nil {
       //convert siple to array
-      array := [1]sugar.Tuple{result_simple}
+      array := []sugar.Tuple{result_simple}
       return array, err
     }
   }
