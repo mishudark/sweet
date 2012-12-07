@@ -62,6 +62,18 @@ func (self *List) pop(){
   *self = newList
 }
 
+//change char at index in string
+func index_replace(self string, char rune, index int) string {
+  c := []rune(self)
+
+  if len(c) <= index {
+    return self
+  }
+
+  c[index] = char
+  return string(c)
+}
+
 
 //json decoder helper
 func json_decode(bytes []byte) (interface{}, error) {
