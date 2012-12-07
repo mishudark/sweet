@@ -48,6 +48,7 @@ func (self *List) push(data interface{}){
   *self = newList
 }
 
+
 //List.pop()
 func (self *List) pop(){
   l := len(*self)
@@ -61,9 +62,9 @@ func (self *List) pop(){
   *self = newList
 }
 
+
 //json decoder helper
 func json_decode(bytes []byte) (interface{}, error) {
-  //try with array
   var result []sugar.Tuple
 
   err := json.Unmarshal(bytes, &result)
@@ -71,7 +72,6 @@ func json_decode(bytes []byte) (interface{}, error) {
 
   //FIXME: there is another way to make this?
   if strings.Contains(s, "json: cannot unmarshal object into Go") {
-    //then try with simple Tuple
     var result_simple sugar.Tuple
     err = json.Unmarshal(bytes, &result_simple)
 
@@ -80,13 +80,12 @@ func json_decode(bytes []byte) (interface{}, error) {
       array := [1]sugar.Tuple{result_simple}
       return array, err
     }
-	}
-
-	if err != nil {
-    fmt.Println("error:", err)
-		return result, err
   }
 
+  if err != nil {
+    fmt.Println("error:", err)
+    return result, err
+  }
   return result, err
 }
 
