@@ -36,17 +36,7 @@ type ListTuple []sugar.Tuple
 
 //List.push(item)
 func (self *List) push(data interface{}){
-  l := len(*self)
-  l_total := l
-  if l+1 > cap(*self){
-    l_total++
-  }
-
-  newList := make(List, l_total)
-  newList[l] = data
-
-  copy(newList, *self)
-  *self = newList
+  *self = append(*self, data)
 }
 
 
