@@ -55,7 +55,7 @@ func (self *List) pop(){
 }
 
 //round helper
-func Round(num float64){
+func Round(num float64) float64{
   return math.Floor(num + 0.5)
 }
 
