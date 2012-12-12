@@ -28,6 +28,7 @@ import(
   "fmt"
   "github.com/gosexy/sugar"
   "github.com/gosexy/to"
+  "math"
   "strings"
 )
 
@@ -53,8 +54,13 @@ func (self *List) pop(){
   *self = newList
 }
 
+//round helper
+func Round(num float64){
+  return math.Floor(num + 0.5)
+}
+
 //change char at index in string
-func index_replace(self string, char rune, index int) string {
+func Index_replace(self string, char rune, index int) string {
   c := []rune(self)
 
   if len(c) <= index {
@@ -67,7 +73,7 @@ func index_replace(self string, char rune, index int) string {
 
 
 //json decoder helper
-func json_decode(bytes []byte) (ListTuple, error) {
+func Json_decode(bytes []byte) (ListTuple, error) {
   var result []sugar.Tuple
 
   err := json.Unmarshal(bytes, &result)
